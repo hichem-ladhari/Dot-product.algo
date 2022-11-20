@@ -1,0 +1,74 @@
+PROCEDURE dot_product(VAR ps,V1,V2)
+VAR
+BEGIN
+FOR i FROM 0 TO n-1 STEP step  DO
+    ps := ps + V1[i] * V2[i];
+END_FOR    
+END
+
+ALGORITHM Dotproduct
+VAR
+    i : INTEGER; 
+    ps : FLOAT := 0;
+    n : INTEGER;
+    V1 : ARRAY_OF FLOAT[n];
+    V2 : ARRAY_OF FLOAT[n];
+BEGIN
+    write("write the size of two vectors");
+    read(n);
+
+    //filling two tables together
+    FOR i FROM 0 TO n-1 STEP step  DO
+    write("write the element ",i+1," of the first vactor V1");
+    read(V1[i]);
+    write("write the element ",i+1," of the second vactor V2");
+    read(V2[i]);
+    END_FOR
+    
+    //procedure call
+    dot_product(ps,V1,V2);
+    //testing if orthogonal
+    IF (ps=0) THEN
+        write("The two vectors are orthogonal");
+    ELSE
+        write("The two vectors are not orthogonal");
+    END_IF
+END
+
+//Scalar using function
+
+FUNCTION dot_product(V1,V2) : FLOAT
+VAR
+    ps : FLOAT := 0;
+BEGIN
+    FOR i FROM 0 TO n-1 STEP step  DO
+    ps := ps + V1[i] * V2[i];
+    END_FOR    
+    RETURN ps ;
+END
+
+ALGORITHM Dotproduct
+VAR
+    i : INTEGER; 
+    n : INTEGER;
+    V1 : ARRAY_OF FLOAT[n];
+    V2 : ARRAY_OF FLOAT[n];
+BEGIN
+    write("write the size of two vectors");
+    read(n);
+
+    //filling two tables together
+    FOR i FROM 0 TO n-1 STEP step  DO
+    write("write the element ",i+1," of the first vactor V1");
+    read(V1[i]);
+    write("write the element ",i+1," of the second vactor V2");
+    read(V2[i]);
+    END_FOR
+    
+    //testing if orthogonal using the call of function
+    IF (dot_product(V1,V2) = 0) THEN
+        write("The two vectors are orthogonal");
+    ELSE
+        write("The two vectors are not orthogonal");
+    END_IF
+END
